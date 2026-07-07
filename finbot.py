@@ -20,13 +20,14 @@ def calculate_EMA(ticker,window):
 
 def calculate_RSI(ticker):
     data = yf.Ticker(ticker).history(period = '1y').Close()
-    delta = delta.diff()
+    delta = data.diff()
     up = delta.clip(lower=0)
     down = -1 * delta.clip(upper = 0)
     emma_up = up.ewm(com = 14-1,adjust = False).mean()
     emma_down = down.ewm(com = 14-1,adjust = False).mean()
     rs = emma_up/emma_down
-    return str(100-(100/1 + rs)).iloc[-1]
+    rsi = 100 - (100 / (1 + rs))
+    return str(rsi.iloc[-1])
 
 def calculate_MACD(ticker):
     data = yf.Ticker(ticker).history(period = '1y').Close()
