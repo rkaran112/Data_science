@@ -44,7 +44,7 @@ def plot_stock_price(ticker):
     plt.figure(figsize=(10,5))
     plt.plot(data.index,data.Close)
     plt.title(f'{ticker}Stock Price Over Last Year')
-    plt.xlabel9('Date')
+    plt.xlabel('Date')
     plt.ylabel('Stock Price {$}')
     plt.grid(True)
     plt.savefig('graph.png')
