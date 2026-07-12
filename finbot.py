@@ -55,7 +55,7 @@ def stock_holder_info(ticker):
     return share_holders
 
 def news(ticker):
-    news= yf.Ticker(ticker).news()
+    news = yf.Ticker(ticker).news
     return news
 
 def personal_finance(ticker):
