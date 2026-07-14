@@ -197,7 +197,7 @@ avail_fun = {
     "personal_finance": personal_finance
 }
 
-if 'messages ' not in st.session_state:
+if 'messages' not in st.session_state:
     st.session_state['messages'] = []
     
 st.title('Stock Analysis Chatbot Assitant')
@@ -233,7 +233,7 @@ if user_input:
             if function_name == "plot_stock_price":
                 st.image('graph.png')
             else:
-                st.session_state['message'].append({'role': 'function', 'name': function_name, 'content': function_response})
+                st.session_state['messages'].append({'role': 'function', 'name': function_name, 'content': function_response})
 
                 second_response = openai.completions.create(
                     model='gpt-3.5-turbo-0613',
@@ -241,7 +241,7 @@ if user_input:
                     stream = False
                 )
                 st.text(second_response.choices[0].text.strip())
-                st.session_state['message'].append({'role': 'assistant', 'content': second_response.choices[0].text.strip()})
+                st.session_state['messages'].append({'role': 'assistant', 'content': second_response.choices[0].text.strip()})
         else:
             st.text(response_message)
 
