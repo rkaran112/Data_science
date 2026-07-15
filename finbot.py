@@ -37,7 +37,7 @@ def calculate_MACD(ticker):
     MACD = short_EMA - long_EMA
     signal = MACD.ewm(span=9,adjust = False).mean()
     MACD_histogram = MACD - signal
-    return f'{MACD[-1]},{signal[-1]},{MACD_histogram[-1]}'
+    return f'{MACD.iloc[-1]},{signal.iloc[-1]},{MACD_histogram.iloc[-1]}'
 
 def plot_stock_price(ticker):
     data = yf.Ticker(ticker).history(period = '1y').Close
