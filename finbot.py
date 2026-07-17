@@ -65,7 +65,7 @@ functions = [
     {
         "name": "get_stock_price",
         "description": "Gets the latest stock price given the ticker symbol of the company.",
-        "parameter": {
+        "parameters": {
             "type": "object",
             "properties": {
                 "ticker": {
@@ -79,7 +79,7 @@ functions = [
     {
         "name": "calculate_SMA",
         "description": "Calculates the simple moving average of the given the ticker symbol of the company",
-        "parameter": {
+        "parameters": {
             "type": "object",
             "properties": {
                 "ticker": {
