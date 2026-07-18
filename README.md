@@ -8,7 +8,7 @@ This repo is a grab-bag of three unrelated pieces of work, each self-contained:
 
 - **`finbot.py`** — A Streamlit-based "stock analysis chatbot" prototype. It defines helper functions for pulling stock data via `yfinance` (price, SMA, EMA, RSI, MACD, institutional holders, news) intended to be wired up to an OpenAI chat model as callable "functions", plus a small Streamlit UI. The OpenAI function-calling wiring is commented out and incomplete, so it does not run as-is.
 - **`incomepredict.ipynb`** — A notebook that loads the UCI "Adult" census income dataset (expects `/content/sample_data/adult.csv`, i.e. a Google Colab path), does one-hot encoding of categorical columns, explores correlations, and trains a `RandomForestClassifier` (with a `GridSearchCV` hyperparameter search) to predict whether income is above/below $50K. Reaches ~86% test accuracy.
-- **`spamsmspredict.ipynb`** — A notebook that loads an SMS spam dataset (expects `content/spam.csv`), does text cleanup/EDA (message length, word/sentence counts, word clouds, most-common-word plots), tokenizes and stems messages with NLTK, vectorizes with TF-IDF, and compares Gaussian/Multinomial/Bernoulli Naive Bayes classifiers (Bernoulli NB reaches ~98.8% accuracy). Note: one cell references a `num_characters` column that hasn't been created yet, and another cell has a typo (`df[df['']==0]` instead of `df[df['label_enc']==0]`), so the notebook does not run top-to-bottom without fixes.
+- **`spamsmspredict.ipynb`** — A notebook that loads an SMS spam dataset (expects `content/spam.csv`), does text cleanup/EDA (message length, word/sentence counts, word clouds, most-common-word plots), tokenizes and stems messages with NLTK, vectorizes with TF-IDF, and compares Gaussian/Multinomial/Bernoulli Naive Bayes classifiers (Bernoulli NB reaches ~98.8% accuracy). Runs top-to-bottom given the expected dataset.
 
 ## Tech stack
 
@@ -50,6 +50,6 @@ but it currently errors out before producing useful output (see Status below).
 **Work in progress / exploratory scripts, not a polished product.** Specifically:
 
 - `finbot.py` does not run as-is: the OpenAI function-calling logic is commented out/incomplete.
-- `spamsmspredict.ipynb` does not run top-to-bottom: it drops a `num_characters` column before it exists, and has a typo referencing `df['']` instead of `df['label_enc']` when building a word cloud.
+- `spamsmspredict.ipynb` runs top-to-bottom given the expected dataset — the `num_characters`/`label_enc` issues that used to break it have been fixed.
 - `incomepredict.ipynb` is the most complete of the three — it runs end-to-end and produces a trained classifier — but assumes a Google Colab file path and has no exported model or app around it.
 - None of the three pieces are related to each other; this repo is a loose collection of individual learning/practice exercises rather than a single application.
