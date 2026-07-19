@@ -221,8 +221,8 @@ if user_input:
         if response_message.get('function_call'):
             function_name = response_message['function_call']['name']
             function_args = json.loads(response_message['function_call']['arguments'])
-            if function_name in ['get_stock_price', 'calculate_RSI', 'calculate_MACD', 'stock_holder_info', 'news',
-                                 'personal_finance']:
+            if function_name in ['get_stock_price', 'calculate_RSI', 'calculate_MACD', 'plot_stock_price',
+                                 'stock_holder_info', 'news', 'personal_finance']:
                 args_dict = {'ticker': function_args.get('ticker')}
             elif function_name in ['calculate_SMA', 'calculate_EMA']:
                 args_dict = {'ticker': function_args.get('ticker'), "window": function_args.get('window')}
