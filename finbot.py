@@ -97,91 +97,104 @@ functions = [
     {
         "name": "calculate_EMA",
         "description": "Calculates the Exponential Moving Average (EMA) of a stock over the past year.",
-        "parameters": [
-            {
-                "name": "ticker",
-                "type": "string",
-                "description": "The stock ticker symbol for a company."
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "The stock ticker symbol for a company."
+                },
+                "window": {
+                    "type": "integer",
+                    "description": "The time frame (in days) to calculate the EMA value."
+                }
             },
-            {
-                "name": "window",
-                "type": "integer",
-                "description": "The time frame (in days) to calculate the EMA value."
-            }
-        ],
-        "returns": "The last calculated EMA value as a string."
+            "required": ["ticker", "window"]
+        }
     },
     {
         "name": "calculate_RSI",
         "description": "Calculates the Relative Strength Index (RSI) of a stock over the past year.",
-        "parameters": [
-            {
-                "name": "ticker",
-                "type": "string",
-                "description": "The stock ticker symbol for a company."
-            }
-        ],
-        "returns": "The last RSI value as a string."
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "The stock ticker symbol for a company."
+                }
+            },
+            "required": ["ticker"]
+        }
     },
     {
         "name": "calculate_MACD",
         "description": "Calculates the Moving Average Convergence Divergence (MACD) for a stock, including the signal and MACD histogram values over the past year.",
-        "parameters": [
-            {
-                "name": "ticker",
-                "type": "string",
-                "description": "The stock ticker symbol for a company."
-            }
-        ],
-        "returns": "A string representing the last values of MACD, signal, and MACD histogram."
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "The stock ticker symbol for a company."
+                }
+            },
+            "required": ["ticker"]
+        }
     },
     {
         "name": "plot_stock_price",
         "description": "Plots and saves a graph of the stock price over the last year.",
-        "parameters": [
-            {
-                "name": "ticker",
-                "type": "string",
-                "description": "The stock ticker symbol for a company."
-            }
-        ],
-        "returns": "Saves the plot as 'graph.png' and does not return a value."
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "The stock ticker symbol for a company."
+                }
+            },
+            "required": ["ticker"]
+        }
     },
     {
         "name": "stock_holder_info",
         "description": "Retrieves information about the institutional holders of the specified stock.",
-        "parameters": [
-            {
-                "name": "ticker",
-                "type": "string",
-                "description": "The stock ticker symbol for a company."
-            }
-        ],
-        "returns": "A DataFrame containing details about the stock's institutional holders."
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "The stock ticker symbol for a company."
+                }
+            },
+            "required": ["ticker"]
+        }
     },
     {
         "name": "news",
         "description": "Fetches the latest news related to the specified stock.",
-        "parameters": [
-            {
-                "name": "ticker",
-                "type": "string",
-                "description": "The stock ticker symbol for a company."
-            }
-        ],
-        "returns": "A list of news items related to the stock."
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "The stock ticker symbol for a company."
+                }
+            },
+            "required": ["ticker"]
+        }
     },
     {
         "name": "personal_finance",
         "description": "A placeholder function related to personal finance features for a specified stock.",
-        "parameters": [
-            {
-                "name": "ticker",
-                "type": "string",
-                "description": "The stock ticker symbol for a company."
-            }
-        ],
-        "returns": "Currently does not return any output."
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ticker": {
+                    "type": "string",
+                    "description": "The stock ticker symbol for a company."
+                }
+            },
+            "required": ["ticker"]
+        }
     }
 ]
 
