@@ -219,16 +219,13 @@ if user_input:
     try:
         st.session_state['messages'].append({'role': 'user', 'content': f'{user_input}'})
 
-        response = openai.completions.create(
-            model='gpt-3.5-turbo-0613',  # Corrected model name
-            prompt=user_input,
-            max_tokens=150,  # Adjust as needed
-            # messages=st.session_state['messages'],
-            # functions=functions,
-            # function_call='auto',
-            stream=False
+        response = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo-0613',
+            messages=st.session_state['messages'],
+            functions=functions,
+            function_call='auto',
         )
-        response_message = response.choices[0].text.strip()
+        response_message = response['choices'][0]['message']
 
         if response_message.get('function_call'):
             function_name = response_message['function_call']['name']
@@ -247,15 +244,15 @@ if user_input:
             else:
                 st.session_state['messages'].append({'role': 'function', 'name': function_name, 'content': function_response})
 
-                second_response = openai.completions.create(
+                second_response = openai.ChatCompletion.create(
                     model='gpt-3.5-turbo-0613',
-                    prompt=st.session_state['messages'],
-                    stream = False
+                    messages=st.session_state['messages'],
                 )
-                st.text(second_response.choices[0].text.strip())
-                st.session_state['messages'].append({'role': 'assistant', 'content': second_response.choices[0].text.strip()})
+                reply = second_response['choices'][0]['message']['content']
+                st.text(reply)
+                st.session_state['messages'].append({'role': 'assistant', 'content': reply})
         else:
-            st.text(response_message)
+            st.text(response_message['content'])
 
     except Exception as e:
         st.text(f"Error: {e}")
