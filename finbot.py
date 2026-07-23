@@ -50,12 +50,12 @@ def plot_stock_price(ticker):
     plt.close()
 
 def stock_holder_info(ticker):
-    share_holders=  yf.Ticker(ticker).get_institutional_holders()
-    return share_holders
+    share_holders = yf.Ticker(ticker).get_institutional_holders()
+    return str(share_holders)
 
 def news(ticker):
     news = yf.Ticker(ticker).news
-    return news
+    return str(news)
 
 def personal_finance(ticker):
     return f'Personal finance analysis for {ticker} is not yet implemented.'
